@@ -5,6 +5,8 @@
 #include <math.h>
 #include<windows.h>
 #include <stdbool.h>
+#include <time.h>
+
 
 
 #define KRED  "\x1B[31m"
@@ -574,11 +576,11 @@ void logo()
  }
 
 
- //void covid19(void)
- //{
+ void covid19(void)
+ {
 
-   //  printf("\n\n COVID-19");
-     //printf("\n DO YOU WANT TO KNOW  SYMPTOMS OF COVID-19 are : ");
-     //printf("")
+     printf("\n\n COVID-19");
+     printf("\n DO YOU WANT TO KNOW  SYMPTOMS OF COVID-19 are : ");
+     printf("");
 
- //}
+ }
