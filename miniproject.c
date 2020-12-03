@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
-#include<windows.h>
+#include <windows.h>
 #include <stdbool.h>
 #include <time.h>
-
-
+#include <dos.h>
+#include <conio.h>
 
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -21,6 +21,7 @@ struct login                           // before the first use of `l`.
     char gender;
     int age;
 };
+
 struct login l;
 
 void login (void);
@@ -71,7 +72,7 @@ void influenza(void);
 void ebola(void);
 void rabies(void);
 void gastro(void);
-void constipation(void)
+void constipation(void);
 void diarr(void);
 void abdom(void);
 void anal(void);
@@ -104,9 +105,7 @@ void toothdec(void);
 void errormessage(void);
 
 
-
-int main (void)
-{
+int main (void){
    printf("%sgreen\n", KGRN);
     logo();
    // printf("%sgreen\n", KGRN);
@@ -130,12 +129,15 @@ int main (void)
             login();
         }
     // details();
+    system("CLS");
+    printf(" \n\n\t\tTHANK YOU !!!");
+    printf(" \n\t\tSTAY SAFE !!");
+    printf("  \n\t\t STAY HEALTHY!!");
 
      return 0;
 }
 
-void login (void)
-{
+void login(void){
 
     char username[30],password[20];
     FILE *log;
@@ -183,12 +185,12 @@ void login (void)
     return;
 }
 
-void registration(void)
-{
+void registration(void){
+
     char firstname[15];
     FILE *log;
 
-    log=fopen("login.dat","w");
+    log=fopen("login.dat","a+");
     if (log == NULL)
     {
         fputs("Error at opening File!", stderr);
@@ -225,29 +227,27 @@ void registration(void)
     login();
 }
 
-void logo()
-    {
+     void logo(void){
          printf("%sred\n", KRED);
-         printf("\n\n\t\t\t\t   HEALTH  ASSISTOR ");
-         printf("\n\n\t\t\t HEALTH IS WEALTH ");
-         printf(" \n \n HEALTH FACILITIES SHOULD BE FREE");
-         printf("\n\n WELCOME TO OUR ONLINE  SERVICE ");
         printf("\n");
-        printf("   ++   ");
+        printf("   --   ");
         printf("\n");
-        printf("   ++   ");
+        printf("   --   ");
         printf("\n");
-        printf("+++++++++");
+        printf("---------");
         printf("\n");
-        printf("+++++++++");
+        printf("---------");
         printf("\n");
-        printf("   ++   ");
+        printf("   --   ");
         printf("\n");
-        printf("   ++   ");
+        printf("   --   ");
         printf("\n");
         printf("%sgreen\n", KGRN);
 
         printf("                  HEALTH ASSISTOR\n\n\n"                );
+        printf("\n\n\t\t\t HEALTH IS WEALTH ");
+        printf(" \n \n HEALTH FACILITIES SHOULD BE FREE");
+        printf("\n\n WELCOME TO OUR ONLINE  SERVICE ");
     }
     
     void details (void){ 
@@ -275,8 +275,8 @@ void logo()
         problems();
 
     }
-    void problems(void)
-    {
+    void problems(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -365,6 +365,7 @@ void logo()
     }
 
  void respiratory(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -421,6 +422,7 @@ void logo()
  }
 
  void sinus(void){
+
    FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -466,6 +468,7 @@ void logo()
 		}
  }
  void asthma(void){
+
      FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -511,6 +514,7 @@ void logo()
  }
 
  void accuteresp(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -558,6 +562,7 @@ void logo()
  }
 
  void pneumonia(void){
+
      FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -569,8 +574,8 @@ void logo()
 
 
     printf("THE INFORMATION REGARDING PNEUMONIA IS COMPLETELY PROVIDED :");
-    system("explorer https://www.healthline.com/health/acute-respiratory-disease#symptoms");
-    char *a="https://www.healthline.com/health/acute-respiratory-disease#symptoms";
+    system("explorer https://www.healthline.com/health/pneumonia");
+    char *a="https://www.healthline.com/health/pneumonia";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR, WE GIVE YOU BEST DOCTORS IN TOWN ");
@@ -602,6 +607,7 @@ void logo()
 		}
  }
  void nasal(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -649,8 +655,8 @@ void logo()
 
 
 
- void covid19(void)
- {
+ void covid19(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -682,6 +688,7 @@ void logo()
  }
 
 void physicalproblems(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -721,7 +728,7 @@ void physicalproblems(void){
                 vitamindef();
                 break;
 
-        case 6: printf("YOU HAVE CHOSEN DIABATIES PROBLEMS DEPT\n THANK YOU!!\n");
+        case 7: printf("YOU HAVE CHOSEN DIABATIES PROBLEMS DEPT\n THANK YOU!!\n");
                 diabaties();
                 break;
 
@@ -731,6 +738,7 @@ void physicalproblems(void){
 }
 
 void weightloss(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -751,8 +759,8 @@ void weightloss(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.practo.com/hyderabad/dietitian-nutritionist");
+        char *b="https://www.practo.com/hyderabad/dietitian-nutritionist";
         fputs(b,log);
     }
     else{
@@ -775,7 +783,9 @@ void weightloss(void){
         	physicalproblems();
 		}
 }
+
 void weightgain(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -796,8 +806,8 @@ void weightgain(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.practo.com/hyderabad/dietitian-nutritionist");
+        char *b="https://www.practo.com/hyderabad/dietitian-nutritionist";
         fputs(b,log);
     }
     else{
@@ -820,7 +830,9 @@ void weightgain(void){
         	physicalproblems();
 		}
 }
+
 void headache(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -841,8 +853,8 @@ void headache(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.practo.com/hyderabad/treatment-for-headache");
+        char *b="https://www.practo.com/hyderabad/treatment-for-headache";
         fputs(b,log);
     }
     else{
@@ -867,6 +879,7 @@ void headache(void){
 }
 
 void musclepains(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -887,8 +900,8 @@ void musclepains(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.credihealth.com/doctors/hyderabad/muscle-pain");
+        char *b="https://www.credihealth.com/doctors/hyderabad/muscle-pain";
         fputs(b,log);
     }
     else{
@@ -912,6 +925,7 @@ void musclepains(void){
 		}
 }
 void depression(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -932,8 +946,8 @@ void depression(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.practo.com/hyderabad/treatment-for-anxiety-and-depression");
+        char *b="https://www.practo.com/hyderabad/treatment-for-anxiety-and-depression";
         fputs(b,log);
     }
     else{
@@ -957,6 +971,7 @@ void depression(void){
 		}
 }
 void vitamindef(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -977,8 +992,8 @@ void vitamindef(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.practo.com/hyderabad/dietitian-nutritionist");
+        char *b="https://www.practo.com/hyderabad/dietitian-nutritionist";
         fputs(b,log);
     }
     else{
@@ -1003,6 +1018,7 @@ void vitamindef(void){
 }
 
 void diabaties(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1023,8 +1039,8 @@ void diabaties(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.credihealth.com/doctors/hyderabad/nasal-congestion");
-        char *b="https://www.healthline.com/health/nasal-congestion";
+        system("explorer https://www.medifee.com/list/best-diabetes-hospitals-in-hyderabad");
+        char *b="https://www.medifee.com/list/best-diabetes-hospitals-in-hyderabad";
         fputs(b,log);
     }
     else{
@@ -1050,6 +1066,7 @@ void diabaties(void){
 
 
 void mentalissues(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1102,6 +1119,7 @@ void mentalissues(void){
      }
 }
 void anxiety(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1147,6 +1165,7 @@ void anxiety(void){
 		}
 }
 void bipolar(void){
+
      FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1192,6 +1211,7 @@ void bipolar(void){
 		}
 }
 void ocd(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1237,6 +1257,7 @@ void ocd(void){
 		}
 }
 void ptsd(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1282,6 +1303,7 @@ void ptsd(void){
 		}
 }
 void psychosis(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1327,6 +1349,7 @@ void psychosis(void){
 		}
 }
 void schizoprenia(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1372,6 +1395,7 @@ void schizoprenia(void){
 		}
 }
 void schizoaffective(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1417,6 +1441,7 @@ void schizoaffective(void){
 		}
 }
 void suicidal(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1521,6 +1546,7 @@ void skin(void){
 }
 
 void acne(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1567,6 +1593,7 @@ void acne(void){
 }
 
 void eczema(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1613,6 +1640,7 @@ void eczema(void){
 }
 
 void measles(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1659,6 +1687,7 @@ void measles(void){
 }
 
 void chicken(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1705,6 +1734,7 @@ void chicken(void){
 }
 
 void hives(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1751,6 +1781,7 @@ void hives(void){
 }
 
 void rashes(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1797,6 +1828,7 @@ void rashes(void){
 }
 
 void melasma(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1842,6 +1874,7 @@ void melasma(void){
 		}
 }
 void blister(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1888,6 +1921,7 @@ void blister(void){
 }
 
 void warts(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1899,7 +1933,7 @@ void warts(void){
 
     
 
-    printf("THE INFORMATION REGARDING WARRTS IS COMPLETELY IN THIS WEBSITE :");
+    printf("THE INFORMATION REGARDING WARTS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/skin/warts");
     char *a="https://www.healthline.com/health/skin/warts";
     fputs(a,log);
@@ -1983,6 +2017,7 @@ void allergyinfec(void){
      }
 }
 void food(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -1995,16 +2030,16 @@ void food(void){
     
 
     printf("THE INFORMATION REGARDING FOOD ALLERGY IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://acaai.org/allergies/types/food-allergy");
+    char *a="https://acaai.org/allergies/types/food-allergy";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2029,6 +2064,7 @@ void food(void){
 }
 
 void drug(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2041,16 +2077,16 @@ void drug(void){
     
 
     printf("THE INFORMATION REGARDING DRUG ALLERGY IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.mayoclinic.org/diseases-conditions/drug-allergy/symptoms-causes/syc-20371835");
+    char *a="https://www.mayoclinic.org/diseases-conditions/drug-allergy/symptoms-causes/syc-20371835";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2075,6 +2111,7 @@ void drug(void){
 }
 
 void mold(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2087,16 +2124,16 @@ void mold(void){
     
 
     printf("THE INFORMATION REGARDING MOLD ALLERGY IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.mayoclinic.org/diseases-conditions/mold-allergy/symptoms-causes/syc-20351519");
+    char *a="https://www.mayoclinic.org/diseases-conditions/mold-allergy/symptoms-causes/syc-20351519";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2121,6 +2158,7 @@ void mold(void){
 }
 
 void latex(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2133,16 +2171,16 @@ void latex(void){
     
 
     printf("THE INFORMATION REGARDING LATEX ALLERGY IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://acaai.org/allergies/types/latex-allergy");
+    char *a="https://acaai.org/allergies/types/latex-allergy";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2167,6 +2205,7 @@ void latex(void){
 }
 
 void influenza(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2179,16 +2218,16 @@ void influenza(void){
     
 
     printf("THE INFORMATION REGARDING INFLUENZA IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/flu-causes");
+    char *a="https://www.healthline.com/health/flu-causes";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2213,6 +2252,7 @@ void influenza(void){
 }
 
 void rabies(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2225,16 +2265,16 @@ void rabies(void){
     
 
     printf("THE INFORMATION REGARDING RABIES IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/rabies");
+    char *a="https://www.healthline.com/health/rabies";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2258,6 +2298,7 @@ void rabies(void){
 		}
 }
 void ebola(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2270,16 +2311,16 @@ void ebola(void){
     
 
     printf("THE INFORMATION REGARDING EBOLA IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.who.int/news-room/fact-sheets/detail/ebola-virus-disease");
+    char *a="https://www.who.int/news-room/fact-sheets/detail/ebola-virus-disease";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258");
+        char *b="https://www.justdial.com/Hyderabad/Doctors-For-Allergy/nct-11164258";
         fputs(b,log);
     }
     else{
@@ -2302,7 +2343,9 @@ void ebola(void){
         	allergyinfec();
 		}
 }
+
 void gastro(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2341,6 +2384,7 @@ void gastro(void){
 }
 
 void constipation(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2353,16 +2397,16 @@ void constipation(void){
     
 
     printf("THE INFORMATION REGARDING CONSTIPATION IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/constipation");
+    char *a="https://www.healthline.com/health/constipation";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.credihealth.com/doctors/hyderabad/gastroenterology");
+        char *b="https://www.credihealth.com/doctors/hyderabad/gastroenterology";
         fputs(b,log);
     }
     else{
@@ -2386,6 +2430,7 @@ void constipation(void){
 		}
 }
 void diarr(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2398,16 +2443,16 @@ void diarr(void){
     
 
     printf("THE INFORMATION REGARDING DIARRHEA IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/diarrhea");
+    char *a="https://www.healthline.com/health/diarrhea";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.credihealth.com/doctors/hyderabad/gastroenterology");
+        char *b="https://www.credihealth.com/doctors/hyderabad/gastroenterology";
         fputs(b,log);
     }
     else{
@@ -2431,6 +2476,7 @@ void diarr(void){
 		}
 }
 void abdom(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2443,16 +2489,16 @@ void abdom(void){
     
 
     printf("THE INFORMATION REGARDING ABDOMINAL PAIN IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/abdominal-pain");
+    char *a="https://www.healthline.com/health/abdominal-pain";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.credihealth.com/doctors/hyderabad/gastroenterology");
+        char *b="https://www.credihealth.com/doctors/hyderabad/gastroenterology";
         fputs(b,log);
     }
     else{
@@ -2477,6 +2523,7 @@ void abdom(void){
 }
 
 void anal(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2489,16 +2536,16 @@ void anal(void){
     
 
     printf("THE INFORMATION REGARDING ANAL PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/anal-fissure");
+    char *a="https://www.healthline.com/health/anal-fissure";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.credihealth.com/doctors/hyderabad/gastroenterology");
+        char *b="https://www.credihealth.com/doctors/hyderabad/gastroenterology";
         fputs(b,log);
     }
     else{
@@ -2520,9 +2567,10 @@ void anal(void){
         }else{
         	gastro();
 		}
-}
+} 
 
 void genital(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2557,6 +2605,7 @@ void genital(void){
 }
 
 void urogenit(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2569,16 +2618,16 @@ void urogenit(void){
     
 
     printf("THE INFORMATION REGARDING UROGENITAL PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/urinary-tract-infection-adults");
+    char *a="https://www.healthline.com/health/urinary-tract-infection-adults";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/sexologist");
+        char *b="https://www.practo.com/hyderabad/sexologist";
         fputs(b,log);
     }
     else{
@@ -2603,6 +2652,7 @@ void urogenit(void){
 }
 
 void sexdysfunc(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2615,16 +2665,16 @@ void sexdysfunc(void){
     
 
     printf("THE INFORMATION REGARDING SEXUAL DYSFUCTION PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/what-sexual-dysfunction");
+    char *a="https://www.healthline.com/health/what-sexual-dysfunction";
     fputs(a,log);
 
-    printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
+    printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A  DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/sexologist");
+        char *b="https://www.practo.com/hyderabad/sexologist";
         fputs(b,log);
     }
     else{
@@ -2649,6 +2699,7 @@ void sexdysfunc(void){
 }
 
 void sexaddic(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2661,16 +2712,16 @@ void sexaddic(void){
     
 
     printf("THE INFORMATION REGARDING SEX ADDICTION IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/addiction/sex");
+    char *a="https://www.healthline.com/health/addiction/sex";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/sexologist");
+        char *b="https://www.practo.com/hyderabad/sexologist";
         fputs(b,log);
     }
     else{
@@ -2695,6 +2746,7 @@ void sexaddic(void){
 }
 
 void injury(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2722,15 +2774,15 @@ void injury(void){
                 fracture();
                 break;
         
-         case 3: printf("YOU HAVE CHOSEN DISLOCATION  DEPT\n THANK YOU!!\n");
+         case 4: printf("YOU HAVE CHOSEN DISLOCATION  DEPT\n THANK YOU!!\n");
                 disloc();
                 break;
 
-         case 3: printf("YOU HAVE CHOSEN KNEE INJURY  DEPT\n THANK YOU!!\n");
+         case 5: printf("YOU HAVE CHOSEN KNEE INJURY  DEPT\n THANK YOU!!\n");
                 knee();
                 break;
 
-         case 3: printf("YOU HAVE CHOSEN TENDON RUPTURE  DEPT\n THANK YOU!!\n");
+         case 6: printf("YOU HAVE CHOSEN TENDON RUPTURE  DEPT\n THANK YOU!!\n");
                  tendon();
                  break;
 
@@ -2740,6 +2792,7 @@ void injury(void){
 }
 
 void sprain(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2752,16 +2805,16 @@ void sprain(void){
     
 
     printf("THE INFORMATION REGARDING SPRAINS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/ankle-sprain");
+    char *a="https://www.healthline.com/health/ankle-sprain";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -2786,6 +2839,7 @@ void sprain(void){
 }
 
 void strains(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2798,16 +2852,16 @@ void strains(void){
     
 
     printf("THE INFORMATION REGARDING STRAINS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/strains");
+    char *a="https://www.healthline.com/health/strains";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorerhttps://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -2832,6 +2886,7 @@ void strains(void){
 }
 
 void fracture(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2844,16 +2899,16 @@ void fracture(void){
     
 
     printf("THE INFORMATION REGARDING FRACTURE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/fracture");
+    char *a="https://www.healthline.com/health/fracture";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -2878,6 +2933,7 @@ void fracture(void){
 }
 
 void disloc(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2890,16 +2946,16 @@ void disloc(void){
     
 
     printf("THE INFORMATION REGARDING DISLOCATIONS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/dislocation");
+    char *a="https://www.healthline.com/health/dislocation";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -2924,6 +2980,7 @@ void disloc(void){
 }
 
 void knee(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2936,16 +2993,16 @@ void knee(void){
     
 
     printf("THE INFORMATION REGARDING KNEE INJURY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/8-most-common-knee-injuries-from-falling");
+    char *a="https://www.healthline.com/health/8-most-common-knee-injuries-from-falling";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -2970,6 +3027,7 @@ void knee(void){
 }
 
 void tendon(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -2982,16 +3040,16 @@ void tendon(void){
     
 
     printf("THE INFORMATION REGARDING TENDON PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/tendinitis");
+    char *a="https://www.healthline.com/health/tendinitis";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/orthopedist");
+        char *b="https://www.practo.com/hyderabad/orthopedist";
         fputs(b,log);
     }
     else{
@@ -3053,6 +3111,7 @@ void cardiac(void){
 }
 
 void heartatt(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3065,16 +3124,16 @@ void heartatt(void){
     
 
     printf("THE INFORMATION REGARDING HEART ATTACK PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/heart-attack");
+    char *a="https://www.healthline.com/health/heart-attack";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/");
+        char *b="https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/";
         fputs(b,log);
     }
     else{
@@ -3099,6 +3158,7 @@ void heartatt(void){
 }
 
 void angina(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3111,16 +3171,16 @@ void angina(void){
     
 
     printf("THE INFORMATION REGARDING ANGINA PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.mayoclinic.org/diseases-conditions/angina/symptoms-causes/syc-20369373");
+    char *a="https://www.mayoclinic.org/diseases-conditions/angina/symptoms-causes/syc-20369373";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/");
+        char *b="https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/";
         fputs(b,log);
     }
     else{
@@ -3145,6 +3205,7 @@ void angina(void){
 }
 
 void heartfail(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3157,16 +3218,16 @@ void heartfail(void){
     
 
     printf("THE INFORMATION REGARDING HEART FAILURE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.mayoclinic.org/diseases-conditions/heart-failure/symptoms-causes/syc-20373142");
+    char *a="https://www.mayoclinic.org/diseases-conditions/heart-failure/symptoms-causes/syc-20373142";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/");
+        char *b="https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/";
         fputs(b,log);
     }
     else{
@@ -3191,6 +3252,7 @@ void heartfail(void){
 }
 
 void bp(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3203,23 +3265,23 @@ void bp(void){
     
 
     printf("THE INFORMATION REGARDING BP PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings");
+    char *a="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/");
+        char *b="https://www.truecarehealth.in/blog/top-10-cardiologists-in-hyderabad/";
         fputs(b,log);
     }
     else{
         exit(0);
     }
      
-     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another CARDIAC problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
@@ -3237,6 +3299,7 @@ void bp(void){
 }
 
 void tobacco(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3271,6 +3334,7 @@ void tobacco(void){
 
 
 void alcohol(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3291,54 +3355,8 @@ void alcohol(void){
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
-        fputs(b,log);
-    }
-    else{
-        exit(0);
-    }
-     
-     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-        printf("Would you like to go to bacK and choose another TOBACCO problem :\n");
-        printf("< 1 > Yes\n");
-        printf("< 2 > No\n");
-        scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
-        if (choose == 2){
-            exit(0);
-           
-        }else{
-        	 tobbaco();
-		}
-}
-
-void cigg(void){
-    FILE *log;  
-    char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
-    log = fopen(temp2,"a+");
-    system("cls");
-    int option;
-    int choose;
-
-    
-
-    printf("THE INFORMATION REGARDING CIGGARETE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
-    fputs(a,log);
-
-    printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
-    printf("\n 1 for Yes\n 2 for No and exit\n");
-    scanf("%d",&option);
-    if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/doctors-for-alcohol-de-addiction-treatment");
+        char *b="https://www.practo.com/hyderabad/doctors-for-alcohol-de-addiction-treatment";
         fputs(b,log);
     }
     else{
@@ -3362,7 +3380,55 @@ void cigg(void){
 		}
 }
 
+void cigg(void){
+
+    FILE *log;  
+    char *temp=".dat";
+    char* temp2=l.fname;
+    strcat(temp2,temp); 
+    log = fopen(temp2,"a+");
+    system("cls");
+    int option;
+    int choose;
+
+    
+
+    printf("THE INFORMATION REGARDING CIGGARETE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
+    system("explorer https://www.healthline.com/health/skin/warts");
+    char *a="https://www.healthline.com/health/skin/warts";
+    fputs(a,log);
+
+    printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
+    printf("\n 1 for Yes\n 2 for No and exit\n");
+    scanf("%d",&option);
+    if(option==1){
+        system("explorer https://www.healthline.com/health/quit-smoking/products-to-help-you-quit-smoking");
+        char *b="https://www.healthline.com/health/quit-smoking/products-to-help-you-quit-smoking";
+        fputs(b,log);
+    }
+    else{
+        exit(0);
+    }
+     
+     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("Would you like to go to bacK and choose another TOBACCO problem :\n");
+        printf("< 1 > Yes\n");
+        printf("< 2 > No\n");
+        scanf("%d", &choose);
+         system("CLS"); 
+        
+    
+        
+        if (choose == 2){
+            exit(0);
+           
+        }else{
+        	 tobacco();
+		}
+}
+
 void other(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3375,16 +3441,16 @@ void other(void){
     
 
     printf("THE INFORMATION REGARDING OTHER TOBACCO PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/ways-to-cleanse-your-lungs");
+    char *a="https://www.healthline.com/health/ways-to-cleanse-your-lungs";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL DOCTOR , WE GIVE YOU BEST DOCTORS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://rehabs.in/city/hyderabad/");
+        char *b="https://rehabs.in/city/hyderabad/";
         fputs(b,log);
     }
     else{
@@ -3409,6 +3475,7 @@ void other(void){
 }
 
 void dental(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3450,6 +3517,7 @@ void dental(void){
 }
 
 void cavity(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3462,16 +3530,16 @@ void cavity(void){
     
 
     printf("THE INFORMATION REGARDING  CAVITY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/find-care/articles/dentists/tooth-cavities");
+    char *a="https://www.healthline.com/find-care/articles/dentists/tooth-cavities";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A DENTIST , WE GIVE YOU BEST DENTIST IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/dentist");
+        char *b="https://www.practo.com/hyderabad/dentist";
         fputs(b,log);
     }
     else{
@@ -3496,6 +3564,7 @@ void cavity(void){
 }
 
 void toothache(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3508,16 +3577,16 @@ void toothache(void){
     
 
     printf("THE INFORMATION REGARDING TOOTHACHE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/toothaches");
+    char *a="https://www.healthline.com/health/toothaches";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A DENTIST , WE GIVE YOU BEST DENTIST IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/dentist");
+        char *b="https://www.practo.com/hyderabad/dentist";
         fputs(b,log);
     }
     else{
@@ -3542,6 +3611,7 @@ void toothache(void){
 }
 
 void badbreath(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3554,16 +3624,16 @@ void badbreath(void){
     
 
     printf("THE INFORMATION REGARDING BAD BREATH PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.healthline.com/health/bad-breath");
+    char *a="https://www.healthline.com/health/bad-breath";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A DENTIST , WE GIVE YOU BEST DENTIST IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/dentist");
+        char *b="https://www.practo.com/hyderabad/dentist";
         fputs(b,log);
     }
     else{
@@ -3578,7 +3648,7 @@ void badbreath(void){
          system("CLS"); 
         
         
-        
+
         if (choose == 2){
             exit(0);
            
@@ -3588,6 +3658,7 @@ void badbreath(void){
 }
 
 void gums(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3600,16 +3671,16 @@ void gums(void){
     
 
     printf("THE INFORMATION REGARDING GUMS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://www.medicinenet.com/gum_problems/article.htm");
+    char *a="https://www.medicinenet.com/gum_problems/article.htm";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A DENTIST , WE GIVE YOU BEST DENTIST IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/dentist");
+        char *b="https://www.practo.com/hyderabad/dentist";
         fputs(b,log);
     }
     else{
@@ -3634,6 +3705,7 @@ void gums(void){
 }
 
 void toothdec(void){
+
     FILE *log;  
     char *temp=".dat";
     char* temp2=l.fname;
@@ -3646,16 +3718,16 @@ void toothdec(void){
     
 
     printf("THE INFORMATION REGARDING OTHER TOOTH DECAY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
-    system("explorer https://www.healthline.com/health/skin/warts");
-    char *a="https://www.healthline.com/health/skin/warts";
+    system("explorer https://medlineplus.gov/toothdecay.html");
+    char *a="https://medlineplus.gov/toothdecay.html";
     fputs(a,log);
 
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A DENTIST , WE GIVE YOU BEST DENTIST IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
     if(option==1){
-        system("explorer https://www.practo.com/hyderabad/dermatologist");
-        char *b="https://www.practo.com/hyderabad/dermatologist";
+        system("explorer https://www.practo.com/hyderabad/dentist");
+        char *b="https://www.practo.com/hyderabad/dentist";
         fputs(b,log);
     }
     else{
