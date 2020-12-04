@@ -21,6 +21,15 @@ struct login                           // before the first use of `l`.
     char gender;
     int age;
 };
+struct plasma                           // before the first use of `l`.
+{
+    char fname[30];
+    char lname[30];
+    char gender;
+    int age;
+    char bg[4];
+    char phn[10];
+};
 
 struct login l;
 
@@ -112,7 +121,7 @@ int main (void){
 
     int option;
 
-    printf("Press '1' to Register\n Press '2' to Login\n\n");
+    printf("\nPress '1' to Register\n Press '2' to Login\n\n");
     scanf("%d",&option);
 
     getchar();           // catching newline.
@@ -155,14 +164,29 @@ void login(void){
     scanf("%s",username);
     printf("Password: ");
    // printf("\n");
+   char a;
+   int i=0;
+   /*
+   while(1)
+        {
+                a = getch();
+                printf("*");
+     if(a =='\n')
+		{
+			password[i] = '\0';
+			break;
+        }
+                password[i++] = a;
+        }*/  
     scanf("%s",password);
     printf("%s",username);
     printf("%s",password);
+    int le=0;
     while(fread(&l,sizeof(l),1,log))
         {
-             printf("%s\n",l.username);
-             printf("\n");
-            printf("%s\n",l.password);
+            // printf("%s\n",l.username);
+             //printf("\n");
+            //printf("%s\n",l.password);
         if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
 
             {   
@@ -171,15 +195,18 @@ void login(void){
             Sleep(100);
             printf(". ");
         }
+
                 printf("\nSuccessful Login\n");
+                le++;
                 details();
             }
         else 
             {
-                printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
+               // printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
             }
        }
-
+       if(le==0)
+        printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
     fclose(log);
 
     return;
@@ -215,7 +242,11 @@ void registration(void){
 
     fwrite(&l,sizeof(l),1,log);
     fclose(log);
-    log=fopen(l.fname,"w");
+    char *temp,*temp2;
+    temp = ".dat";
+    temp2 = l.fname;
+    strcat(temp2,temp);
+    log=fopen(temp2,"w");
      fclose(log);
 
 
@@ -230,17 +261,17 @@ void registration(void){
      void logo(void){
          printf("%sred\n", KRED);
         printf("\n");
-        printf("   --   ");
+        printf("   **   ");
         printf("\n");
-        printf("   --   ");
+        printf("   **   ");
         printf("\n");
-        printf("---------");
+        printf("********");
         printf("\n");
-        printf("---------");
+        printf("********");
         printf("\n");
-        printf("   --   ");
+        printf("   **   ");
         printf("\n");
-        printf("   --   ");
+        printf("   **  ");
         printf("\n");
         printf("%sgreen\n", KGRN);
 
@@ -352,7 +383,7 @@ void registration(void){
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
+         //system("CLS"); 
         
         
         
@@ -375,6 +406,7 @@ void registration(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t RESPIRATORY PROBLEMS PROBLEMS");
 
 
      printf("\n 1.ASTHMA\n 2.SINUS\n 3.PNEUMONIA\n 4.NASAL CONGESTION \n 5.ACCUTE RESPIRATORY SYSTEM\n");
@@ -653,7 +685,211 @@ void registration(void){
 		}
  }
 
+void donP()
+{
+    
+    struct plasma p;
+    p.age = l.age;
+    strcpy(p.fname,l.fname);
+    p.gender= l.gender;
+    strcpy(p.lname ,l.lname);
+    printf("Select your blood group\n");
+    printf("1.A+\n2.A-\n3.B+\n4.B-\n5.O+\n6.O-\n7.AB+\n8.AB-\n9.RHD+\n10.RHD-");
+    int sbg;
+    printf("\n");
+    scanf("%d",&sbg);
 
+    switch(sbg)
+    {case(1):
+    {
+        strcpy(p.bg, "A+");
+        break;
+    }
+    case(2):
+    {
+        strcpy(p.bg,"A-");
+        break;
+    }
+    case(3):
+    {
+        strcpy(p.bg,"B+");
+        break;
+    }
+    case(4):
+    {
+        strcpy(p.bg,"B-");
+        break;
+    }
+    case(5):
+    {
+        strcpy(p.bg ,"O+");
+        break;
+    }
+    case(6):
+    {
+        strcpy(p.bg ,"O-");
+        break;
+    }
+    case(7):
+    {
+        strcpy(p.bg,"AB+");
+        break;
+    }
+    case(8):
+    {
+        strcpy(p.bg,"AB-");
+        break;
+    }
+    case(9):
+    {
+        strcpy(p.bg,"RHD+");
+        break;
+    }
+    case(10):
+    {
+        strcpy(p.bg,"RHD-");
+        break;
+    }}
+    printf("\nENTER YOUR PHNO:\n");
+    scanf("%s",p.phn);
+  FILE *log; 
+log=fopen("plasma.dat","a+");
+
+    if (log == NULL)
+    {
+        fputs("Error at opening File!", stderr);
+        exit(1);
+    }
+
+     
+    fwrite(&p,sizeof(p),1,log);
+    fclose(log);
+    log=fopen(l.fname,"w");
+     fclose(log);
+
+
+    //printf("\nConfirming details...\n...\nWelcome, %s!\n\n",firstname);
+    printf("\nRegistration Successful!\n");
+    printf("Press any key to continue...");
+        getchar();
+
+}
+
+void findP()
+{
+  FILE *log;
+struct plasma p;
+    log = fopen("plasma.dat","r");
+    if (log == NULL)
+    {
+        fputs("Error at opening File!", stderr);
+        exit(1);
+    }
+
+     printf("\nSelect your blood group\n");
+    printf("1.A+\n2.A-\n3.B+\n4.B-\n5.O+\n6.O-\n7.AB+\n8.AB-\n9.RHD+\n10.RHD-");
+    int sbg;
+    printf("\n");
+    char tbg[4];
+    scanf("%d",&sbg);
+    switch(sbg)
+    {case(1):
+    {
+        strcpy(tbg, "A+");
+        break;
+    }
+    case(2):
+    {
+        strcpy(tbg,"A-");
+        break;
+    }
+    case(3):
+    {
+        strcpy(tbg,"B+");
+        break;
+    }
+    case(4):
+    {
+        strcpy(tbg,"B-");
+        break;
+    }
+    case(5):
+    {
+        strcpy(tbg ,"O+");
+        break;
+    }
+    case(6):
+    {
+        strcpy(tbg ,"O-");
+        break;
+    }
+    case(7):
+    {
+        strcpy(tbg,"AB+");
+        break;
+    }
+    case(8):
+    {
+        strcpy(tbg,"AB-");
+        break;
+    }
+    case(9):
+    {
+        strcpy(tbg,"RHD+");
+        break;
+    }
+    case(10):
+    {
+        strcpy(tbg,"RHD-");
+        break;
+    }}
+   int temp=0;
+   printf("\n");
+    while(fread(&p,sizeof(p),1,log))
+        {
+        
+        if(strcmp(tbg,p.bg)==0 )
+
+            {   
+                printf("Fname:\t%s\nLname:\t%s\nGender:\t%s\nBloodGroup:\t%s\nPhn no:\t%s\n",p.fname,p.lname,p.gender,p.bg,p.phn);
+        temp++;
+        for(int i=0;i<=6;i++)
+        {
+            Sleep(100);
+            printf(". ");
+        }
+                
+            }
+        else 
+            {
+                continue;
+            }
+       }
+
+    if(temp == 0)
+        printf("SORRY WE COULD NOT FIND PLASMA OF YOUR BLOOD GROUP!!\n");
+    fclose(log);
+
+    return;   
+}
+
+void  plasma_donation(){
+
+    printf("\n1.Do you want to find plasma donars \n2.Do you want to donate plasma");
+    int option;
+    scanf("%d",&option);
+    if(option == 1)
+    {
+        findP();
+        sleep(100000);
+    }
+    if(option == 2)
+    {
+        donP();
+        sleep(100000);
+    }
+
+}
 
  void covid19(void){
 
@@ -666,11 +902,10 @@ void registration(void){
     int option;
     int choose;
 
-     printf("\n\n COVID-19");
-     printf("\n\n DO YOU WANT TO KNOW SYMPTOMS OF COVID-19 are : ");
-     scanf("%d",&option);
-     system("explorer https://www.google.com/search?client=firefox-b-d&q=covid+19+symptoms");
-     char *a =  "https://www.google.com/search?client=firefox-b-d&q=covid+19+symptoms";
+     printf("\n\n\t\t COVID-19");
+     printf("\n\n HERE IS ALL THE INFORMATION OF COVID-19: ");
+     system("explorer https://www.who.int/emergencies/diseases/novel-coronavirus-2019");
+     char *a = "https://www.who.int/emergencies/diseases/novel-coronavirus-2019";
      fputs(a,log);
      printf("\n DO YOU WANT A  SELF ASSESSMENT TEST FOR COVID-19 ?");
      printf("\n 1.CLICK 1 FOR YES AND CLICK 2 FOR NO");
@@ -680,7 +915,12 @@ void registration(void){
          char*b= "https://www.mayoclinic.org/covid-19-self-assessment-tool";
          fputs(b,log);
      }
-     if(choose==2){
+     printf("\n \t DO YOU WANT TO DONATE OR TAKE PLASMA FROM OUR HEALTH SERVICE");
+    printf("\n 1.CLICK 1 FOR YES AND CLICK 2 FOR NO");
+     scanf("%d",&option);
+     if (option == 1)
+        plasma_donation();
+     if(option ==2){
          problems();
      }
      printf("\n\n\t\t COVID-19 IS A GLOBAL PANDEMIC!!, \n BE SAFE..");
@@ -698,7 +938,7 @@ void physicalproblems(void){
     int option;
     int choose;
 
-
+    printf("\n\t\t PHYSICAL PROBLEMS ");
 
      printf("\n 1.WEIGHT LOSS\n 2.WEIGHT GAIN\n 3.HEADACHES\n 4.BODY PAINS \n 5.DEPRESSION\n");
      scanf("%d",&option);
@@ -1076,7 +1316,7 @@ void mentalissues(void){
     int option;
     int choose;
 
-
+    printf("\n\t\t MENTAL ISSUES !!");
 
      printf("\n 1.ANXIETY\n \n 2.BIPOLAR DISORDER\n 3.OCD \n 4.PTSD\n 5.PSYCHOSIS\n 6.SCHIZOPHRENIA\n 7.SCHIZOAFFECTIVE DISORDER\n 8.SUICIDAL FEELINGS\n");
      scanf("%d",&option);
@@ -1498,6 +1738,7 @@ void skin(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t SKIN PROBLEMS");
 
 
      printf("\n 1.ACNE\n \n 2.ECZEMA\n 3.MEASLES\n 4.CHICKEN POX\n 5.HIVES\n 6.SKIN RASHES\n 7.WARTS\n 8.MELASMA\n 9.BLISTER");
@@ -1978,6 +2219,7 @@ void allergyinfec(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t ALLERGIRS AND INFECTIONS");
 
 
      printf("\n 1.FOOD ALLERGY\n \n 2.DRUG ALLERGY\n 3.MOLD ALLERGY\n 4.LATEX ALLERGY\n 5.INFLUENZA\n 6.RABIES\n 7.EBOLA");
@@ -2355,6 +2597,7 @@ void gastro(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t GASTRIC PROBLEMS");
 
 
      printf("\n 1.CONSTIPATION\n \n 2.DIARRHEA\n 3.ABDOMONAL PAIN\n 4.ANAL");
@@ -2580,6 +2823,7 @@ void genital(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t GENITAL PROBLEMS");
 
 
      printf("\n 1.UROGENITAL PAIN\n \n 2.SEX DYSFUNCTION\n 3.SEX ADDICTION\n");
@@ -2756,6 +3000,7 @@ void injury(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t INJURIES ");
 
 
      printf("\n 1.SPRAINS\n 2.STRAINS\n 3.FRACTURES\n 4.DISLOCATIONS\n 5.KNEE INJURY\n 6.TENDON RUPTURE");
@@ -3083,9 +3328,12 @@ void cardiac(void){
     int option;
     int choose;
 
+        printf("\n\n\t\t CARDIAC PROBLEMS");
 
 
      printf("\n 1.HEART ATTACK\n 2.HEART FAILURE\n 3.ANGINA\n 4.BP");
+     printf("\nCHOOSE YOUR PROBLEM BASED ON THE NUMBER");
+     printf("\n\n");
      scanf("%d",&option);
      switch(option)
      {
@@ -3309,6 +3557,8 @@ void tobacco(void){
     int option;
     int choose;
 
+    printf("\n\n\t\t TOBACCO AND ADDICTION PROBLEMS");
+
 
 
      printf("\n 1.ALCOHOL\n 2.CIGGARETE\n 3.TOBACCO\n");
@@ -3485,7 +3735,7 @@ void dental(void){
     int option;
     int choose;
 
-
+    printf("\n\n\t\t DENTAL PROBLEMS");
 
      printf("\n 1.CAVITIES\n 2.TOOTHACHE\n 3.TOOTH DECAY\n 4.BAD BREATH\n 5.GUMS");
      scanf("%d",&option);
@@ -3755,7 +4005,7 @@ void errormessage (void) {
     int choose;
     printf("+++!!!You selected invalid number!!!+++\n");
     printf("\n WOULD YOU LIKE TO CHOOSE ANOTHER PROBLEM OR EXIT");
-    printf("\n CLICK 1 TO GO BACK TO THE PROBLEMS MENU OR EXIT");
+    printf("\n CLICK 1 TO GO BACK TO THE PROBLEMS MENU OR EXIT\n");
     scanf("%d",&choose);
     if(choose==1){
         problems();
