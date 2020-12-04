@@ -9,8 +9,10 @@
 #include <dos.h>
 #include <conio.h>
 
+
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
+
 
 struct login                           // before the first use of `l`.
 {
@@ -112,16 +114,66 @@ void gums(void);
 void toothache(void);
 void toothdec(void);
 void errormessage(void);
+void bmi(void);
+void bpcalc(void);
 
 
 int main (void){
-   printf("%sgreen\n", KGRN);
+/*int sock;
+    char host[] = "www.martinbroadhurst.com";
+    char port[] = "80";
+    struct addrinfo hints, *res;
+    char message[] = "GET / HTTP/1.1\nHost: www.martinbroadhurst.com\n\n";
+    unsigned int i;
+    char buf[1024];
+    int bytes_read;
+    int status;
+ 
+    memset(&hints, 0, sizeof hints);
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    status = getaddrinfo(host, port, &hints, &res);
+    if (status != 0) {
+        perror("getaddrinfo");
+        return 1;
+    }
+    sock = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+    if (sock == -1) {
+        perror("socket");
+        return 1;
+    }
+    status = connect(sock, res->ai_addr, res->ai_addrlen);
+    if (status == -1) {
+        perror("connect");
+        return 1;
+    }
+    freeaddrinfo(res);
+    send(sock, message, strlen(message), 0);
+ 
+    do {
+        bytes_read = recv(sock, buf, 1024, 0);
+        if (bytes_read == -1) {
+            perror("recv");
+        }
+        else {
+            printf("%.*s", bytes_read, buf);
+        }
+    } while (bytes_read > 0);
+ 
+    close(sock);*/
+ 
+
+ //system("Color B5");
+  system("Color 74");
+    //  system("Color DE");
+       //setbkcolor(WHITE);  
+  // printf("%sgreen\n", KGRN);
     logo();
-   // printf("%sgreen\n", KGRN);
+    printf("%sgreen\n", KGRN);
 
     int option;
 
-    printf("\nPress '1' to Register\n Press '2' to Login\n\n");
+    printf("\n\nPress '1' to Register\nPress '2' to Login\n\n");
     scanf("%d",&option);
 
     getchar();           // catching newline.
@@ -261,24 +313,32 @@ void registration(void){
      void logo(void){
          printf("%sred\n", KRED);
         printf("\n");
-        printf("   **   ");
+        printf("\t\t     ***   ");
         printf("\n");
-        printf("   **   ");
+        printf("\t\t     ***   ");
         printf("\n");
-        printf("********");
+        printf("\t\t     ***   ");
         printf("\n");
-        printf("********");
+        printf("\t\t*************");
         printf("\n");
-        printf("   **   ");
+        printf("\t\t*************");
         printf("\n");
-        printf("   **  ");
+        printf("\t\t*************");
         printf("\n");
-        printf("%sgreen\n", KGRN);
+        //printf("\t************");
+        //printf("\n");
+        printf("\t\t     ***   ");
+        printf("\n");
+        printf("\t\t     ***  ");
+        printf("\n");
+        printf("\t\t     ***   ");
+        printf("\n");
+       // printf("%sgreen\n", KGRN);
 
         printf("                  HEALTH ASSISTOR\n\n\n"                );
-        printf("\n\n\t\t\t HEALTH IS WEALTH ");
-        printf(" \n \n HEALTH FACILITIES SHOULD BE FREE");
-        printf("\n\n WELCOME TO OUR ONLINE  SERVICE ");
+        printf("\n\t HEALTH IS WEALTH ");
+        printf(" \n\t HEALTH FACILITIES SHOULD BE FREE");
+        printf("\n\n\t\t WELCOME TO OUR ONLINE  SERVICE ");
     }
     
     void details (void){ 
@@ -316,6 +376,7 @@ void registration(void){
     system("cls");
     int option;
     int choose;
+    system("COLOR 7D");
 
 
         printf(" =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= ");
@@ -987,6 +1048,7 @@ void weightloss(void){
     system("cls");
     int option;
     int choose;
+    bmi();
 
     
 
@@ -1034,6 +1096,7 @@ void weightgain(void){
     system("cls");
     int option;
     int choose;
+    bmi();
 
     
 
@@ -3509,7 +3572,7 @@ void bp(void){
     system("cls");
     int option;
     int choose;
-
+    bpcalc();
     
 
     printf("THE INFORMATION REGARDING BP PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
@@ -4013,4 +4076,92 @@ void errormessage (void) {
     else{
         exit(0);
     }
+}
+
+void bmi(void){
+     system("color 74");
+
+    float bmi;
+    float height;
+    float weight;
+    
+    printf("\n ENTER HEIGHT IN METERS AND WEIGHT IN KILOGRAMS ");
+    printf("\n WE WOULD LIKE TO KNOW YOUR BMI TO GIVE YOU BETTER HEALTH SERVICE");
+    printf("\n YOUR BMI IS THE WEIGHT DIVIDED BY HEIGHT*HEIGHT(IN METERES)");
+    scanf("%f\n%f",&height,&weight);
+
+    bmi=(weight)/(height*height);
+
+    if(bmi < 15)  
+    {  
+        printf("\nYour BMI category is: Starvation\n");  
+    }  
+    else if(bmi >= 15.1 && bmi <= 17.5)  
+    {  
+        printf("\nYour BMI category is: Anorexic\n");  
+    }  
+    else if(bmi >= 17.6 && bmi <= 18.5)  
+    {  
+        printf("\nYour BMI category is: Underweight\n");  
+    }  
+    else if(bmi >= 18.6 && bmi <= 24.9)  
+    {  
+        printf("\nYour BMI category is: Ideal\n");  
+    }  
+    else if(bmi >= 25 && bmi <= 25.9)  
+    {  
+        printf("\nYour BMI category is: Overweight\n");  
+    }  
+    else if(bmi >= 30 && bmi <= 30.9)  
+    {  
+        printf("\nYour BMI category is: Obese\n");  
+    }  
+    else if(bmi >= 40)  
+    {  
+        printf("\nYour BMI category is: Morbidly Obese\n");  
+    }  
+    else  
+    {  
+        printf("\nWrong entry\n");  
+    }  
+  
+}
+
+void bpcalc(void){
+     system("color 74");
+    float sys;
+    float dias;
+    printf("\n\n THE UPPER VALUE OF YOUR BP IS SYSTOLIC");
+    printf("\n\n THE LOWER VALUE OF YOUR BP IS DIASTOLIC");
+    printf("\n ENTER YOUR SYSTOLIC AND DIASTOLIC VALUES OF YOUR BP");
+    scanf("%f\n%f",&sys,&dias);
+
+
+    if(sys< 120 && dias < 120)  
+    {  
+        printf("\nYour BP is NORMAL.\n");  
+    }
+
+    else if( sys >= 120 && sys < 140 && dias >=80 && dias < 90)  
+    {  
+        printf("\nYou have PRE-HYPERTENION \n");  
+    }  
+
+    else if( sys >= 140 && sys < 160 && dias >=90 && dias < 100)  
+    {  
+        printf("\nYou have HYPERTENSION STAGE 1.\n");  
+    }
+
+    else if( sys >= 160 && sys < 180 && dias >=100 && dias < 110)  
+    {  
+        printf("\nYou have HYPERTENSION STAGE 2\n");  
+    }  
+
+    else if( sys>=180 && dias>=110)  
+    {    
+      printf("\nHYPERTENSIVE CRISIS\n"); 
+      printf("\n CRITICAL");
+      printf("\n EMERGENCY NEEDED!!"); 
+    }  
+
 }
