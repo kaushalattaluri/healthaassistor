@@ -218,21 +218,22 @@ void login(void){
    // printf("\n");
    char a;
    int i=0;
-   /*
+   
    while(1)
         {
                 a = getch();
                 printf("*");
-     if(a =='\n')
+
+     if(a == 8 || a==13)
 		{
 			password[i] = '\0';
 			break;
         }
                 password[i++] = a;
-        }*/  
-    scanf("%s",password);
-    printf("%s",username);
-    printf("%s",password);
+        }  
+    //scanf("%s",password);
+    //printf("%s",username);
+    //printf("%s",password);
     int le=0;
     while(fread(&l,sizeof(l),1,log))
         {
@@ -291,6 +292,12 @@ void registration(void){
     printf("\nEnter Password:\n");
     scanf("%s",l.password);
 
+    printf("\n\n ENTER YOUR AGE  :");
+        scanf("%d",&l.age);
+        getchar();
+        printf("\n\n ENTER YOUR GENDER  :");
+        printf("\nEnter M for male and F for female :");
+        scanf("%c",&l.gender);
 
     fwrite(&l,sizeof(l),1,log);
     fclose(log);
@@ -350,12 +357,7 @@ void registration(void){
 
         printf("\t\t\t==== ADD MORE RECORDS  ====");
 
-        printf("\n\n ENTER YOUR AGE  :");
-        scanf("%d",&l.age);
-        getchar();
-        printf("\n\n ENTER YOUR GENDER  :");
-        printf("\nEnter M for male and F for female :");
-        scanf("%c",&l.gender);
+        
         fwrite(&l,sizeof(l),1,log);
 
         fclose(log);
@@ -370,7 +372,8 @@ void registration(void){
 
     FILE *log;  
     char *temp=".dat";
-    char* temp2=l.fname;
+    char* temp2;
+    strcpy(temp2,l.fname);
     strcat(temp2,temp); 
     log = fopen(temp2,"a+");
     system("cls");
@@ -460,7 +463,9 @@ void registration(void){
 
     FILE *log;  
     char *temp=".dat";
-    char* temp2=l.fname;
+        char* temp2;
+    strcpy(temp2,l.fname);
+
     strcat(temp2,temp); 
     log = fopen(temp2,"a+");
     system("cls");
@@ -658,7 +663,8 @@ void registration(void){
 
      FILE *log;  
     char *temp=".dat";
-    char* temp2=l.fname;
+    char* temp2;
+    strcpy(temp2,l.fname);
     strcat(temp2,temp); 
     log = fopen(temp2,"a+");
     system("cls");
@@ -912,7 +918,7 @@ struct plasma p;
         if(strcmp(tbg,p.bg)==0 )
 
             {   
-                printf("Fname:\t%s\nLname:\t%s\nGender:\t%s\nBloodGroup:\t%s\nPhn no:\t%s\n",p.fname,p.lname,p.gender,p.bg,p.phn);
+                printf("Fname:\t%s\nLname:\t%s\nGender:\t%c\nAge:\t%d\nBloodGroup:\t%s\nPhn no:\t%s\n",p.fname,p.lname,p.gender,p.age,p.bg,p.phn);
         temp++;
         for(int i=0;i<=6;i++)
         {
@@ -4096,10 +4102,12 @@ void bmi(void){
     {  
         printf("\nYour BMI category is: Starvation\n");  
     }  
+
     else if(bmi >= 15.1 && bmi <= 17.5)  
     {  
         printf("\nYour BMI category is: Anorexic\n");  
     }  
+
     else if(bmi >= 17.6 && bmi <= 18.5)  
     {  
         printf("\nYour BMI category is: Underweight\n");  
@@ -4108,18 +4116,22 @@ void bmi(void){
     {  
         printf("\nYour BMI category is: Ideal\n");  
     }  
+
     else if(bmi >= 25 && bmi <= 25.9)  
     {  
         printf("\nYour BMI category is: Overweight\n");  
     }  
+
     else if(bmi >= 30 && bmi <= 30.9)  
     {  
         printf("\nYour BMI category is: Obese\n");  
     }  
+
     else if(bmi >= 40)  
     {  
         printf("\nYour BMI category is: Morbidly Obese\n");  
     }  
+
     else  
     {  
         printf("\nWrong entry\n");  
