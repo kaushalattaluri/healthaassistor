@@ -8,7 +8,7 @@
 #include <time.h>
 #include <dos.h>
 #include <conio.h>
-
+//#include <graphics.h>
 
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -116,7 +116,7 @@ void toothdec(void);
 void errormessage(void);
 void bmi(void);
 void bpcalc(void);
-
+void pattern(void);
 
 int main (void){
 /*int sock;
@@ -128,7 +128,7 @@ int main (void){
     char buf[1024];
     int bytes_read;
     int status;
- 
+
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
@@ -149,7 +149,7 @@ int main (void){
     }
     freeaddrinfo(res);
     send(sock, message, strlen(message), 0);
- 
+
     do {
         bytes_read = recv(sock, buf, 1024, 0);
         if (bytes_read == -1) {
@@ -159,17 +159,21 @@ int main (void){
             printf("%.*s", bytes_read, buf);
         }
     } while (bytes_read > 0);
- 
+
     close(sock);*/
- 
+
 
  //system("Color B5");
   system("Color 74");
     //  system("Color DE");
-       //setbkcolor(WHITE);  
+       //setbkcolor(WHITE);
   // printf("%sgreen\n", KGRN);
     logo();
+    
     printf("%sgreen\n", KGRN);
+      //system("Color 82");
+
+    pattern();
 
     int option;
 
@@ -189,8 +193,8 @@ int main (void){
             system("CLS");
             login();
         }
-    // details();
-    system("CLS");
+    //details();
+    //system("CLS");
     printf(" \n\n\t\tTHANK YOU !!!");
     printf(" \n\t\tSTAY SAFE !!");
     printf("  \n\t\t STAY HEALTHY!!");
@@ -199,6 +203,72 @@ int main (void){
 }
 
 void login(void){
+
+    /*char username[30],password[20];
+    FILE *log;
+
+    log = fopen("login.dat","r");
+    if (log == NULL)
+    {
+        fputs("Error at opening File!", stderr);
+        exit(1);
+    }
+
+
+    printf("\nPlease Enter your login credentials below\n\n");
+    printf("Username:  ");
+    scanf("%s",username);
+    printf("Password: ");
+   char a;
+   int i=0;
+
+   while(1)
+        {
+                a = getch();
+                printf("*");
+
+     if(a == 8 || a==13)
+		{
+			password[i] = '\0';
+			break;
+        }
+                password[i++] = a;
+        }
+    //scanf("%s",password);
+    //printf("%s",username);
+    //printf("%s",password);
+    int le=0;
+   // printf("/n");
+    while(fread(&l,sizeof(l),1,log))
+        {
+            // printf("%s\n",l.username);
+             //printf("\n");
+            //printf("%s\n",l.password);
+        if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
+
+            {
+        for(int i=0;i<=6;i++)
+        {
+            sleep(1000);
+            printf(". ");
+        }
+
+                printf("\nSuccessful Login\n");
+                le++;
+                details();
+            }
+        else
+            {
+               // printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
+            }
+       }
+       if(le==0)
+        printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
+    fclose(log);
+
+    return;
+
+*/
 
     char username[30],password[20];
     FILE *log;
@@ -215,22 +285,22 @@ void login(void){
     printf("Username:  ");
     scanf("%s",username);
     printf("Password: ");
-   // printf("\n");
+    //printf("\n");
+    //scanf("%s",password);
    char a;
    int i=0;
-   
+
    while(1)
         {
                 a = getch();
                 printf("*");
-
      if(a == 8 || a==13)
 		{
 			password[i] = '\0';
 			break;
         }
                 password[i++] = a;
-        }  
+        }
     //scanf("%s",password);
     //printf("%s",username);
     //printf("%s",password);
@@ -242,18 +312,19 @@ void login(void){
             //printf("%s\n",l.password);
         if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
 
-            {   
+            {
         for(int i=0;i<=6;i++)
         {
-            Sleep(100);
+            Sleep(1000);
             printf(". ");
         }
 
                 printf("\nSuccessful Login\n");
                 le++;
-                details();
+                Sleep(2000);
+                problems();
             }
-        else 
+        else
             {
                // printf("\nIncorrect Login Detail2s\nPlease enter the correct credentials\n");
             }
@@ -285,7 +356,7 @@ void registration(void){
     printf("\nEnter Surname:\n");
     scanf("%s",l.lname);
 
-    printf("Thank you.\nNow please choose a username and password as credentials for system login.\nEnsure the username is no more than 30 characters long.\nEnsure your password is at least 8 characters long and contains lowercase, uppercase, numerical and special character values.\n"); 
+    printf("Thank you.\nNow please choose a username and password as credentials for system login.\nEnsure the username is no more than 30 characters long.\nEnsure your password is at least 8 characters long and contains lowercase, uppercase, numerical and special character values.\n");
 
     printf("\nEnter Username:\n");
     scanf("%s",l.username);
@@ -318,6 +389,8 @@ void registration(void){
 }
 
      void logo(void){
+           system("Color 74");
+
          printf("%sred\n", KRED);
         printf("\n");
         printf("\t\t     ***   ");
@@ -347,20 +420,20 @@ void registration(void){
         printf(" \n\t HEALTH FACILITIES SHOULD BE FREE");
         printf("\n\n\t\t WELCOME TO OUR ONLINE  SERVICE ");
     }
-    
-    void details (void){ 
-        FILE *log;   
-        log = fopen(l.fname,"a+");
+
+    void details (void){
+        //FILE *log;
+        //log = fopen(l.fname,"a+");
        // system("cls");
 
-        struct login l;
+        //struct login l;
 
-        printf("\t\t\t==== ADD MORE RECORDS  ====");
+        //printf("\t\t\t==== ADD MORE RECORDS  ====");
 
-        
-        fwrite(&l,sizeof(l),1,log);
 
-        fclose(log);
+        //fwrite(&l,sizeof(l),1,log);
+
+        //fclose(log);
        // system("cls");
         //fwrite(&l,sizeof(l),1,log);
 
@@ -368,13 +441,14 @@ void registration(void){
         problems();
 
     }
+
     void problems(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
     char* temp2;
     strcpy(temp2,l.fname);
-    strcat(temp2,temp); 
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
@@ -388,36 +462,36 @@ void registration(void){
         printf("5.SKIN \n 6.INFECTIONS AND ALLERGIES\n 7.GASTRO INTESTINAL\n 8.UROGENITAL\n 9.INJRUIES AND ACCIDENTS\n 10.CARDIAC\n 11.TOBACCO\n 12.DENTAL");
         printf("\n CHOOSE A NUMBER BASED ON YOUR PROBLEM \n");
         scanf("%d",&option);
-        
+
         switch(option){
             case 1: printf("YOU HAVE CHOSEN RESPIRATORY PROBLEMS DEPT\n THANK YOU!!\n");
                     respiratory();
                     break;
-            
+
             case 2: printf("YOU HAVE CHOSEN COVID-19 PROBLEMS DEPT\n THANK YOU!!\n");
                    covid19();
                    break;
-            
+
             case 3: printf("YOU HAVE CHOSEN PHYSICAL PROBLEMS DEPT\n THANK YOU!!\n");
                     physicalproblems();
                     break;
-            
+
             case 4: printf("YOU HAVE CHOSEN MENTAL AND NEUROLOGICAL PROBLEMS DEPT\n THANK YOU!!\n");
                     mentalissues();
                     break;
-            
+
             case 5: printf("YOU HAVE CHOSEN SKIN PROBLEMS DEPT\n THANK YOU!!\n");
                     skin();
                     break;
-            
+
             case 6: printf("YOU HAVE CHOSEN ALLERGIES AND INFECTIONS  DEPT\n THANK YOU!!\n");
                     allergyinfec();
                     break;
-            
+
             case 7: printf("YOU HAVE CHOSEN GASTRIC PROBLEMS DEPT\n THANK YOU!!\n");
                    gastro();
                    break;
-            
+
             case 8: printf("YOU HAVE CHOSEN SEXUAL PROBLEMS DEPT\n THANK YOU!!\n");
                     genital();
                     break;
@@ -439,7 +513,7 @@ void registration(void){
                      break;
 
             default: errormessage();
-                     break;   
+                     break;
 
         }
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
@@ -447,13 +521,13 @@ void registration(void){
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         //system("CLS"); 
-        
-        
-        
+         //system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	problems();
 		}
@@ -461,12 +535,12 @@ void registration(void){
 
  void respiratory(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
         char* temp2;
     strcpy(temp2,l.fname);
 
-    strcat(temp2,temp); 
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
@@ -500,20 +574,20 @@ void registration(void){
                 break;
 
         default: errormessage();
-                 break;   
+                 break;
      }
      printf("\n =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("Would you like to choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
@@ -521,16 +595,18 @@ void registration(void){
 
  void sinus(void){
 
-   FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING SINUSITIS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/sinusitis");
@@ -548,33 +624,35 @@ void registration(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
  }
  void asthma(void){
 
-     FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
 
     printf("THE INFORMATION REGARDING SINUSITIS IS COMPLETELY IN THIS WEBSITE :");
@@ -593,19 +671,19 @@ void registration(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
@@ -613,14 +691,16 @@ void registration(void){
 
  void accuteresp(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
 
     printf("THE INFORMATION REGARDING SINUSITIS IS COMPLETELY IN THIS WEBSITE :");
@@ -641,19 +721,19 @@ void registration(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
@@ -661,11 +741,11 @@ void registration(void){
 
  void pneumonia(void){
 
-     FILE *log;  
+     FILE *log;
     char *temp=".dat";
     char* temp2;
     strcpy(temp2,l.fname);
-    strcat(temp2,temp); 
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
@@ -688,35 +768,37 @@ void registration(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
  }
  void nasal(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING nasal congestion IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/nasal-congestion");
@@ -734,19 +816,19 @@ void registration(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another respiratory problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	respiratory();
 		}
@@ -754,7 +836,7 @@ void registration(void){
 
 void donP()
 {
-    
+
     struct plasma p;
     p.age = l.age;
     strcpy(p.fname,l.fname);
@@ -819,7 +901,7 @@ void donP()
     }}
     printf("\nENTER YOUR PHNO:\n");
     scanf("%s",p.phn);
-  FILE *log; 
+  FILE *log;
 log=fopen("plasma.dat","a+");
 
     if (log == NULL)
@@ -828,7 +910,7 @@ log=fopen("plasma.dat","a+");
         exit(1);
     }
 
-     
+
     fwrite(&p,sizeof(p),1,log);
     fclose(log);
     log=fopen(l.fname,"w");
@@ -914,10 +996,10 @@ struct plasma p;
    printf("\n");
     while(fread(&p,sizeof(p),1,log))
         {
-        
+
         if(strcmp(tbg,p.bg)==0 )
 
-            {   
+            {
                 printf("Fname:\t%s\nLname:\t%s\nGender:\t%c\nAge:\t%d\nBloodGroup:\t%s\nPhn no:\t%s\n",p.fname,p.lname,p.gender,p.age,p.bg,p.phn);
         temp++;
         for(int i=0;i<=6;i++)
@@ -925,9 +1007,9 @@ struct plasma p;
             Sleep(100);
             printf(". ");
         }
-                
+
             }
-        else 
+        else
             {
                 continue;
             }
@@ -937,7 +1019,7 @@ struct plasma p;
         printf("SORRY WE COULD NOT FIND PLASMA OF YOUR BLOOD GROUP!!\n");
     fclose(log);
 
-    return;   
+    return;
 }
 
 void  plasma_donation(){
@@ -960,14 +1042,16 @@ void  plasma_donation(){
 
  void covid19(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
      printf("\n\n\t\t COVID-19");
      printf("\n\n HERE IS ALL THE INFORMATION OF COVID-19: ");
@@ -991,19 +1075,21 @@ void  plasma_donation(){
          problems();
      }
      printf("\n\n\t\t COVID-19 IS A GLOBAL PANDEMIC!!, \n BE SAFE..");
-     
+
  }
 
 void physicalproblems(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\t\t PHYSICAL PROBLEMS ");
 
@@ -1030,7 +1116,7 @@ void physicalproblems(void){
         case 5: printf("YOU HAVE CHOSEN DEPRESSION PROBLEMS DEPT\n THANK YOU!!\n");
                 depression();
                 break;
-        
+
         case 6: printf("YOU HAVE CHOSEN VITAMIN DEFICIENCY PROBLEMS DEPT\n THANK YOU!!\n");
                 vitamindef();
                 break;
@@ -1040,29 +1126,34 @@ void physicalproblems(void){
                 break;
 
         default: errormessage();
-                 break;   
+                 break;
      }
 }
 
 void weightloss(void){
-
-    FILE *log;  
+ FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
     bmi();
 
-    
+
+
 
     printf("THE INFORMATION REGARDING WEIGHT LOSS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible");
     char *a="https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible";
     fputs(a,log);
-
+    printf("\n\n THIS INFORMATION WILL GIVE YOU HOW TO LOOSE WEIGHT IN A MONTH USING 14 SIMPLE STEPS : ");
+    Sleep(2000);
+    system("explorer https://www.healthline.com/nutrition/lose-10-pounds-in-a-month");
+    char *c="https://www.healthline.com/nutrition/lose-10-pounds-in-a-month";
+    fputs(c,log);
     printf("\n\n DO YOU ALSO WANT TO TREAT IT FROM A LOCAL NUTRIONIST, WE GIVE YOU BEST NUTRITIONISTS IN TOWN ");
     printf("\n 1 for Yes\n 2 for No and exit\n");
     scanf("%d",&option);
@@ -1074,19 +1165,19 @@ void weightloss(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
@@ -1094,17 +1185,56 @@ void weightloss(void){
 
 void weightgain(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
-    bmi();
 
-    
+    bmi();
+  /*  system("Color 74");
+    int gd = DETECT, gm;
+
+    // initgraph initializes the graphics system
+    // by loading a graphics driver from disk
+    initgraph(&gd, &gm, "");
+
+   //int gd = DETECT, gm;
+
+   //initgraph(&gd, &gm, "C:\\TC\\BGI");
+
+   line(200, 200, 100, 100);
+
+   getch();
+   //closegraph();
+*/
+/*
+    // graphics system by loading a
+    // graphics driver from disk
+    initgraph(&gd, &gm, "");
+
+    // location of sides
+    int left, top, right, bottom;
+
+    // left, top, right, bottom denotes
+    // location of rectangular bar
+    bar(left = 150, top = 150,
+    right = 190, bottom = 350);
+
+    bar(left = 220, top = 250,
+    right = 260, bottom = 350);
+
+    bar(left = 290, top = 200,
+    right = 330, bottom = 350);
+
+    // y axis line
+    line(100, 50, 100, 350);*/
+
+
 
     printf("THE INFORMATION REGARDING WEIGHT GAIN IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/nutrition/how-to-gain-weight#TOC_TITLE_HDR_3");
@@ -1122,19 +1252,19 @@ void weightgain(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
@@ -1142,16 +1272,17 @@ void weightgain(void){
 
 void headache(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING HEADACHE IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/headache");
@@ -1169,19 +1300,19 @@ void headache(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
@@ -1189,16 +1320,18 @@ void headache(void){
 
 void musclepains(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING BODY PAINS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/muscle-aches");
@@ -1216,35 +1349,37 @@ void musclepains(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
 }
 void depression(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING MUSCLE PAINS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/depression");
@@ -1262,35 +1397,37 @@ void depression(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
 }
 void vitamindef(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING VITAMIN DEFICIENCY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/vitamin-deficiency-anemia/symptoms-causes/syc-20355025");
@@ -1308,19 +1445,19 @@ void vitamindef(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
@@ -1328,16 +1465,18 @@ void vitamindef(void){
 
 void diabaties(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING DIABATIES IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/vitamin-deficiency-anemia/symptoms-causes/syc-20355025");
@@ -1355,19 +1494,19 @@ void diabaties(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another physical problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	physicalproblems();
 		}
@@ -1376,14 +1515,16 @@ void diabaties(void){
 
 void mentalissues(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\t\t MENTAL ISSUES !!");
 
@@ -1410,11 +1551,11 @@ void mentalissues(void){
         case 5: printf("YOU HAVE CHOSEN PSYCHOSIS PROBLEMS DEPT\n THANK YOU!!\n");
                 psychosis();
                 break;
-        
+
         case 6: printf("YOU HAVE CHOSEN SCHIZOPRENIA PROBLEMS DEPT\n THANK YOU!!\n");
                 schizoprenia();
                 break;
-        
+
         case 7: printf("YOU HAVE CHOSEN SCHIZOAFFECTIVE DISORDER PROBLEMS DEPT\n THANK YOU!!\n");
                  schizoaffective();
                 break;
@@ -1424,21 +1565,23 @@ void mentalissues(void){
                  break;
 
         default: errormessage();
-                  break;   
+                  break;
      }
 }
 void anxiety(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING ANXIETY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/anxiety#_noHeaderPrefixedContent");
@@ -1456,35 +1599,37 @@ void anxiety(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void bipolar(void){
 
-     FILE *log;  
+      FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING BIPOLAR DISEASE IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/bipolar-disorder#What-is-bipolar-disorder?");
@@ -1502,35 +1647,37 @@ void bipolar(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void ocd(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING OCD IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.webmd.com/mental-health/obsessive-compulsive-disorder#1");
@@ -1548,35 +1695,37 @@ void ocd(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void ptsd(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING PTSD IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/post-traumatic-stress-disorder/symptoms-causes/syc-20355967");
@@ -1594,35 +1743,36 @@ void ptsd(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void psychosis(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING PSHYCHOSIS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/psychosis");
@@ -1640,35 +1790,37 @@ void psychosis(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void schizoprenia(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING SCHIZOPRENIA  IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/schizophrenia#causes");
@@ -1686,35 +1838,37 @@ void schizoprenia(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void schizoaffective(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING SCHIZOAFFECTIVE DISORDER IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/schizoaffective-disorder/symptoms-causes/syc-20354504");
@@ -1732,35 +1886,35 @@ void schizoaffective(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
 }
 void suicidal(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING SUICIDAL HARM IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/suicide-and-suicidal-behavior");
@@ -1778,19 +1932,19 @@ void suicidal(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another mental issues problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	mentalissues();
 		}
@@ -1798,10 +1952,11 @@ void suicidal(void){
 
 void skin(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
@@ -1833,11 +1988,11 @@ void skin(void){
         case 5: printf("YOU HAVE CHOSEN HIVES PROBLEMS DEPT\n THANK YOU!!\n");
                 hives();
                 break;
-        
+
         case 6: printf("YOU HAVE CHOSEN SKIN RASHES PROBLEMS DEPT\n THANK YOU!!\n");
                 rashes();
                 break;
-        
+
         case 7: printf("YOU HAVE CHOSEN WARTS PROBLEMS DEPT\n THANK YOU!!\n");
                  warts();
                 break;
@@ -1850,23 +2005,24 @@ void skin(void){
                 blister();
                 break;
 
-        default: errormessage(); 
-                 break;   
+        default: errormessage();
+                 break;
      }
 }
 
 void acne(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING ACNE IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/beauty-skin-care/types-of-acne");
@@ -1884,19 +2040,19 @@ void acne(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -1904,16 +2060,18 @@ void acne(void){
 
 void eczema(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING ECZEMA IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/eczema");
@@ -1931,19 +2089,19 @@ void eczema(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -1951,16 +2109,17 @@ void eczema(void){
 
 void measles(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING MEASLES IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/suicide-and-suicidal-behavior");
@@ -1978,19 +2137,19 @@ void measles(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -1998,16 +2157,17 @@ void measles(void){
 
 void chicken(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING CHICKEN POX IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/chickenpox");
@@ -2025,19 +2185,19 @@ void chicken(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -2045,16 +2205,18 @@ void chicken(void){
 
 void hives(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING HIVES IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/hives");
@@ -2072,19 +2234,19 @@ void hives(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -2092,16 +2254,18 @@ void hives(void){
 
 void rashes(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING RASHES IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/rashes#overview");
@@ -2119,19 +2283,19 @@ void rashes(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -2139,16 +2303,17 @@ void rashes(void){
 
 void melasma(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING MELASMA IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/melasma");
@@ -2166,35 +2331,35 @@ void melasma(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
 }
 void blister(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING BLISTER IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/blisters");
@@ -2212,19 +2377,19 @@ void blister(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -2232,16 +2397,17 @@ void blister(void){
 
 void warts(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING WARTS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/skin/warts");
@@ -2259,19 +2425,19 @@ void warts(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	skin();
 		}
@@ -2279,10 +2445,11 @@ void warts(void){
 
 void allergyinfec(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
@@ -2314,31 +2481,33 @@ void allergyinfec(void){
         case 5: printf("YOU HAVE CHOSEN INFLUENZA PROBLEMS DEPT\n THANK YOU!!\n");
                 influenza();
                 break;
-        
+
         case 6: printf("YOU HAVE CHOSEN SKIN RABIES PROBLEMS DEPT\n THANK YOU!!\n");
                 rabies();
                 break;
-        
+
         case 7: printf("YOU HAVE CHOSEN EBOLA PROBLEMS DEPT\n THANK YOU!!\n");
                  ebola();
                 break;
 
-        default: errormessage(); 
-                 break;   
+        default: errormessage();
+                 break;
      }
 }
 void food(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING FOOD ALLERGY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://acaai.org/allergies/types/food-allergy");
@@ -2356,19 +2525,19 @@ void food(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
@@ -2376,16 +2545,17 @@ void food(void){
 
 void drug(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING DRUG ALLERGY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/drug-allergy/symptoms-causes/syc-20371835");
@@ -2403,36 +2573,35 @@ void drug(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
 }
 
 void mold(void){
-
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING MOLD ALLERGY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/mold-allergy/symptoms-causes/syc-20351519");
@@ -2450,19 +2619,19 @@ void mold(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
@@ -2470,16 +2639,18 @@ void mold(void){
 
 void latex(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING LATEX ALLERGY IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://acaai.org/allergies/types/latex-allergy");
@@ -2497,19 +2668,19 @@ void latex(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
@@ -2517,16 +2688,18 @@ void latex(void){
 
 void influenza(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING INFLUENZA IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/flu-causes");
@@ -2544,19 +2717,19 @@ void influenza(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
@@ -2564,16 +2737,18 @@ void influenza(void){
 
 void rabies(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING RABIES IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/rabies");
@@ -2591,35 +2766,35 @@ void rabies(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
 }
 void ebola(void){
-
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING EBOLA IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.who.int/news-room/fact-sheets/detail/ebola-virus-disease");
@@ -2637,19 +2812,19 @@ void ebola(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another skin problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	allergyinfec();
 		}
@@ -2657,14 +2832,16 @@ void ebola(void){
 
 void gastro(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\n\t\t GASTRIC PROBLEMS");
 
@@ -2689,24 +2866,26 @@ void gastro(void){
                 anal();
                 break;
 
-         default: errormessage(); 
-                  break;   
+         default: errormessage();
+                  break;
      }
 
 }
 
 void constipation(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING CONSTIPATION IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/constipation");
@@ -2724,35 +2903,37 @@ void constipation(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GASTRO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	gastro();
 		}
 }
 void diarr(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING DIARRHEA IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/diarrhea");
@@ -2770,35 +2951,36 @@ void diarr(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GASTRO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	gastro();
 		}
 }
 void abdom(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING ABDOMINAL PAIN IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/abdominal-pain");
@@ -2816,19 +2998,19 @@ void abdom(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GASTRO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	gastro();
 		}
@@ -2836,16 +3018,17 @@ void abdom(void){
 
 void anal(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING ANAL PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/anal-fissure");
@@ -2863,34 +3046,36 @@ void anal(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GASTRO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	gastro();
 		}
-} 
+}
 
 void genital(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\n\t\t GENITAL PROBLEMS");
 
@@ -2911,24 +3096,26 @@ void genital(void){
                 sexaddic();
                 break;
 
-        default: errormessage(); 
-                 break;   
+        default: errormessage();
+                 break;
      }
 
 }
 
 void urogenit(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING UROGENITAL PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/urinary-tract-infection-adults");
@@ -2946,36 +3133,37 @@ void urogenit(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GENITAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	genital();
 		}
 }
 
 void sexdysfunc(void){
-
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING SEXUAL DYSFUCTION PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/what-sexual-dysfunction");
@@ -2993,19 +3181,19 @@ void sexdysfunc(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GENITAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	genital();
 		}
@@ -3013,16 +3201,18 @@ void sexdysfunc(void){
 
 void sexaddic(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING SEX ADDICTION IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/addiction/sex");
@@ -3040,19 +3230,19 @@ void sexaddic(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another GENITAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	genital();
 		}
@@ -3060,14 +3250,16 @@ void sexaddic(void){
 
 void injury(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\n\t\t INJURIES ");
 
@@ -3087,7 +3279,7 @@ void injury(void){
          case 3: printf("YOU HAVE CHOSEN FRACTURE DEPT\n THANK YOU!!\n");
                 fracture();
                 break;
-        
+
          case 4: printf("YOU HAVE CHOSEN DISLOCATION  DEPT\n THANK YOU!!\n");
                 disloc();
                 break;
@@ -3100,23 +3292,24 @@ void injury(void){
                  tendon();
                  break;
 
-        default: errormessage(); 
-                 break;   
+        default: errormessage();
+                 break;
      }
 }
 
 void sprain(void){
 
-    FILE *log;  
+ FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING SPRAINS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/ankle-sprain");
@@ -3134,19 +3327,19 @@ void sprain(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
@@ -3154,16 +3347,17 @@ void sprain(void){
 
 void strains(void){
 
-    FILE *log;  
+   FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING STRAINS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/strains");
@@ -3181,19 +3375,19 @@ void strains(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
@@ -3201,16 +3395,16 @@ void strains(void){
 
 void fracture(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING FRACTURE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/fracture");
@@ -3228,19 +3422,19 @@ void fracture(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
@@ -3248,16 +3442,16 @@ void fracture(void){
 
 void disloc(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING DISLOCATIONS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/dislocation");
@@ -3275,19 +3469,19 @@ void disloc(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
@@ -3295,16 +3489,16 @@ void disloc(void){
 
 void knee(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING KNEE INJURY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/8-most-common-knee-injuries-from-falling");
@@ -3322,19 +3516,19 @@ void knee(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
@@ -3342,16 +3536,16 @@ void knee(void){
 
 void tendon(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING TENDON PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/tendinitis");
@@ -3369,33 +3563,35 @@ void tendon(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another INJURY problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 injury();
 		}
 }
 
 void cardiac(void){
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
         printf("\n\n\t\t CARDIAC PROBLEMS");
 
@@ -3417,28 +3613,30 @@ void cardiac(void){
          case 3: printf("YOU HAVE CHOSEN ANGINA DEPT\n THANK YOU!!\n");
                  angina();
                  break;
-        
+
          case 4: printf("YOU HAVE CHOSEN BLOOD PRESSURE  DEPT\n THANK YOU!!\n");
                  bp();
                  break;
 
-         default: errormessage(); 
-                  break;   
+         default: errormessage();
+                  break;
      }
 }
 
 void heartatt(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING HEART ATTACK PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/heart-attack");
@@ -3456,19 +3654,19 @@ void heartatt(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another CARDIAC problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 cardiac();
 		}
@@ -3476,16 +3674,18 @@ void heartatt(void){
 
 void angina(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING ANGINA PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/angina/symptoms-causes/syc-20369373");
@@ -3503,19 +3703,19 @@ void angina(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another CARDIAC problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 cardiac();
 		}
@@ -3523,16 +3723,16 @@ void angina(void){
 
 void heartfail(void){
 
-    FILE *log;  
+   FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
 
     printf("THE INFORMATION REGARDING HEART FAILURE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.mayoclinic.org/diseases-conditions/heart-failure/symptoms-causes/syc-20373142");
@@ -3550,19 +3750,19 @@ void heartfail(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another CARDIAC problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 cardiac();
 		}
@@ -3570,16 +3770,18 @@ void heartfail(void){
 
 void bp(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
     bpcalc();
-    
+
 
     printf("THE INFORMATION REGARDING BP PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings");
@@ -3597,19 +3799,19 @@ void bp(void){
     else{
         exit(0);
     }
-     
+
         printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another CARDIAC problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 cardiac();
 		}
@@ -3617,14 +3819,16 @@ void bp(void){
 
 void tobacco(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\n\t\t TOBACCO AND ADDICTION PROBLEMS");
 
@@ -3646,24 +3850,26 @@ void tobacco(void){
                  other();
                  break;
 
-         default: errormessage(); 
-                  break;   
+         default: errormessage();
+                  break;
      }
 }
 
 
 void alcohol(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING ALCOHOL PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/skin/warts");
@@ -3681,19 +3887,19 @@ void alcohol(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another TOBACCO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 tobacco();
 		}
@@ -3701,16 +3907,18 @@ void alcohol(void){
 
 void cigg(void){
 
-    FILE *log;  
+     FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING CIGGARETE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/skin/warts");
@@ -3728,19 +3936,19 @@ void cigg(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another TOBACCO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-    
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 tobacco();
 		}
@@ -3748,16 +3956,18 @@ void cigg(void){
 
 void other(void){
 
-    FILE *log;  
+   FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING OTHER TOBACCO PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/ways-to-cleanse-your-lungs");
@@ -3775,19 +3985,19 @@ void other(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another TOBACCO problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 tobacco();
 		}
@@ -3795,14 +4005,16 @@ void other(void){
 
 void dental(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
+
 
     printf("\n\n\t\t DENTAL PROBLEMS");
 
@@ -3830,23 +4042,25 @@ void dental(void){
                  gums();
                  break;
 
-        default: errormessage(); 
-                 break;   
+        default: errormessage();
+                 break;
      }
 }
 
 void cavity(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING  CAVITY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/find-care/articles/dentists/tooth-cavities");
@@ -3864,19 +4078,19 @@ void cavity(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another DENTAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 dental();
 		}
@@ -3884,16 +4098,18 @@ void cavity(void){
 
 void toothache(void){
 
-    FILE *log;  
+   FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING TOOTHACHE PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/toothaches");
@@ -3911,19 +4127,19 @@ void toothache(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another DENTAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 dental();
 		}
@@ -3931,16 +4147,18 @@ void toothache(void){
 
 void badbreath(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING BAD BREATH PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.healthline.com/health/bad-breath");
@@ -3958,19 +4176,19 @@ void badbreath(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another DENTAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
+         system("CLS");
+
+
 
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 dental();
 		}
@@ -3978,16 +4196,17 @@ void badbreath(void){
 
 void gums(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
 
     printf("THE INFORMATION REGARDING GUMS PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://www.medicinenet.com/gum_problems/article.htm");
@@ -4005,19 +4224,19 @@ void gums(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another DENTAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 dental();
 		}
@@ -4025,16 +4244,18 @@ void gums(void){
 
 void toothdec(void){
 
-    FILE *log;  
+    FILE *log;
     char *temp=".dat";
-    char* temp2=l.fname;
-    strcat(temp2,temp); 
+    char* temp2;
+    strcpy(temp2,l.fname);
+    strcat(temp2,temp);
     log = fopen(temp2,"a+");
     system("cls");
     int option;
     int choose;
 
-    
+
+
 
     printf("THE INFORMATION REGARDING OTHER TOOTH DECAY PROBLEMS IS COMPLETELY IN THIS WEBSITE :");
     system("explorer https://medlineplus.gov/toothdecay.html");
@@ -4052,19 +4273,19 @@ void toothdec(void){
     else{
         exit(0);
     }
-     
+
      printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
         printf("Would you like to go to bacK and choose another DENTAL problem :\n");
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-         system("CLS"); 
-        
-        
-        
+         system("CLS");
+
+
+
         if (choose == 2){
             exit(0);
-           
+
         }else{
         	 dental();
 		}
@@ -4090,7 +4311,7 @@ void bmi(void){
     float bmi;
     float height;
     float weight;
-    
+
     printf("\n ENTER HEIGHT IN METERS AND WEIGHT IN KILOGRAMS ");
     printf("\n WE WOULD LIKE TO KNOW YOUR BMI TO GIVE YOU BETTER HEALTH SERVICE");
     printf("\n YOUR BMI IS THE WEIGHT DIVIDED BY HEIGHT*HEIGHT(IN METERES)");
@@ -4098,45 +4319,45 @@ void bmi(void){
 
     bmi=(weight)/(height*height);
 
-    if(bmi < 15)  
-    {  
-        printf("\nYour BMI category is: Starvation\n");  
-    }  
+    if(bmi < 15)
+    {
+        printf("\nYour BMI category is: Starvation\n");
+    }
 
-    else if(bmi >= 15.1 && bmi <= 17.5)  
-    {  
-        printf("\nYour BMI category is: Anorexic\n");  
-    }  
+    else if(bmi >= 15.1 && bmi <= 17.5)
+    {
+        printf("\nYour BMI category is: Anorexic\n");
+    }
 
-    else if(bmi >= 17.6 && bmi <= 18.5)  
-    {  
-        printf("\nYour BMI category is: Underweight\n");  
-    }  
-    else if(bmi >= 18.6 && bmi <= 24.9)  
-    {  
-        printf("\nYour BMI category is: Ideal\n");  
-    }  
+    else if(bmi >= 17.6 && bmi <= 18.5)
+    {
+        printf("\nYour BMI category is: Underweight\n");
+    }
+    else if(bmi >= 18.6 && bmi <= 24.9)
+    {
+        printf("\nYour BMI category is: Ideal\n");
+    }
 
-    else if(bmi >= 25 && bmi <= 25.9)  
-    {  
-        printf("\nYour BMI category is: Overweight\n");  
-    }  
+    else if(bmi >= 25 && bmi <= 25.9)
+    {
+        printf("\nYour BMI category is: Overweight\n");
+    }
 
-    else if(bmi >= 30 && bmi <= 30.9)  
-    {  
-        printf("\nYour BMI category is: Obese\n");  
-    }  
+    else if(bmi >= 30 && bmi <= 30.9)
+    {
+        printf("\nYour BMI category is: Obese\n");
+    }
 
-    else if(bmi >= 40)  
-    {  
-        printf("\nYour BMI category is: Morbidly Obese\n");  
-    }  
+    else if(bmi >= 40)
+    {
+        printf("\nYour BMI category is: Morbidly Obese\n");
+    }
 
-    else  
-    {  
-        printf("\nWrong entry\n");  
-    }  
-  
+    else
+    {
+        printf("\nWrong entry\n");
+    }
+
 }
 
 void bpcalc(void){
@@ -4149,31 +4370,76 @@ void bpcalc(void){
     scanf("%f\n%f",&sys,&dias);
 
 
-    if(sys< 120 && dias < 120)  
-    {  
-        printf("\nYour BP is NORMAL.\n");  
+    if(sys< 120 && dias < 120)
+    {
+        printf("\nYour BP is NORMAL.\n");
     }
 
-    else if( sys >= 120 && sys < 140 && dias >=80 && dias < 90)  
-    {  
-        printf("\nYou have PRE-HYPERTENION \n");  
-    }  
-
-    else if( sys >= 140 && sys < 160 && dias >=90 && dias < 100)  
-    {  
-        printf("\nYou have HYPERTENSION STAGE 1.\n");  
+    else if( sys >= 120 && sys < 140 && dias >=80 && dias < 90)
+    {
+        printf("\nYou have PRE-HYPERTENION \n");
     }
 
-    else if( sys >= 160 && sys < 180 && dias >=100 && dias < 110)  
-    {  
-        printf("\nYou have HYPERTENSION STAGE 2\n");  
-    }  
+    else if( sys >= 140 && sys < 160 && dias >=90 && dias < 100)
+    {
+        printf("\nYou have HYPERTENSION STAGE 1.\n");
+    }
 
-    else if( sys>=180 && dias>=110)  
-    {    
-      printf("\nHYPERTENSIVE CRISIS\n"); 
+    else if( sys >= 160 && sys < 180 && dias >=100 && dias < 110)
+    {
+        printf("\nYou have HYPERTENSION STAGE 2\n");
+    }
+
+    else if( sys>=180 && dias>=110)
+    {
+      printf("\nHYPERTENSIVE CRISIS\n");
       printf("\n CRITICAL");
-      printf("\n EMERGENCY NEEDED!!"); 
-    }  
+      printf("\n EMERGENCY NEEDED!!");
+    }
+
+}
+
+void pattern(void){
+      //system("Color 74");
+
+    printf("\n");
+printf("\t\t| | | |_   _| | |  / \   |____ | | | | \n");
+printf("\t\t| |_| | | |   | | / _ \    |_  | |_| | \n");
+printf("\t\t|  _  | | |___| |/ ___ \  ___| |  _  | \n");
+printf("\t\t|_| |_| |_|_____/_/   \_\ _____ |_| |_| \n");
+
+ /*   ___           ___           ___                        ___     
+     /  /\         /  /\         /  /\           ___        /  /\    
+    /  /::\       /  /::\       /  /::\         /__/\      /  /::\   
+   /  /:/\:\     /__/:/\:\     /__/:/\:\        \__\:\    /__/:/\:\  
+  /  /::\ \:\   _\_ \:\ \:\   _\_ \:\ \:\       /  /::\  _\_ \:\ \:\ 
+ /__/:/\:\_\:\ /__/\ \:\ \:\ /__/\ \:\ \:\   __/  /:/\/ /__/\ \:\ \:\
+ \__\/  \:\/:/ \  \:\ \:\_\/ \  \:\ \:\_\/  /__/\/:/~~  \  \:\ \:\_\/
+      \__\::/   \  \:\_\:\    \  \:\_\:\    \  \::/      \  \:\_\:\  
+      /  /:/     \  \:\/:/     \  \:\/:/     \  \:\       \  \:\/:/  
+     /__/:/       \  \::/       \  \::/       \__\/        \  \::/   
+     \__\/         \__\/         \__\/                      \__\/    
+                    
+                    ___           ___     
+      ___          /  /\         /  /\    
+     /__/\        /  /::\       /  /::\   
+     \  \:\      /  /:/\:\     /  /:/\:\  
+      \__\:\    /  /:/  \:\   /  /::\ \:\ 
+      /  /::\  /__/:/ \__\:\ /__/:/\:\_\:\
+     /  /:/\:\ \  \:\ /  /:/ \__\/~|::\/:/
+    /  /:/__\/  \  \:\  /:/     |  |:|::/ 
+   /__/:/        \  \:\/:/      |  |:|\/  
+   \__\/          \  \::/       |__|:|~   
+                   \__\/         \__\|    
+
+       
+*/
+printf("\n\n");
+
+printf("\t\t   ____  ___ _____ ____  ___   ____  ____     _   \n"); 
+printf("\t\t  / _  |/ _ \_   _|___  \_ _|  ___  \___ \   / \   \n"); 
+printf("\t\t | (_| | | | || | / ___/ | |  / ___/  ___/  / _ \  \n"); 
+printf("\t\t >  _  | |_| || || (___  | | (__  (___  /  / ___ \ \n"); 
+printf("\t\t /_/ |_|\___/ |_| \____| ___ \____ \____  /     \_\ \n"); 
 
 }
